@@ -4,11 +4,19 @@ import Sidebar from "../components/layout/Sidebar";
 import { useQuizStore } from "../store/quiz.schema";
 
 const Quiz = () => {
-  const { fetchQuiz } = useQuizStore();
+  const fetchQuiz = useQuizStore((state) => state.fetchQuiz);
+  const decrementTime = useQuizStore((state) => state.decrementTime);
 
   useEffect(() => {
     fetchQuiz();
-  }, []);
+  }, [fetchQuiz]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      decrementTime();
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [decrementTime]);
   
   return (
     <div className="h-full p-6 bg-primary">

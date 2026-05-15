@@ -1,28 +1,45 @@
+import { motion } from "framer-motion";
 import { useQuizStore } from "../../store/quiz.schema";
+import { useQuizTimer } from "../../hooks/useQuizTimer";
 import QuizAnswers from "../quiz/QuizAnswers";
-import Badge from "../ui/Badge";
+import QuizTimer from "../quiz/QuizTimer";
+import TimeOutOverlay from "../quiz/TimeOutOverlay";
 import Button from "../ui/Button";
 
 const QuizView = () => {
   const currentQuestionTitle = useQuizStore((state) => state.currentQuestionTitle);
   const isSelectionComplete = useQuizStore((state) => state.isSelectionComplete);
+  const { isTimeOut } = useQuizTimer();
 
   return (
-    <div className="flex flex-col gap-4 bg-secondary h-full">
-      <div className="flex flex-col gap-4 bg-primary-shadow rounded-lg h-full p-2">
-        <Badge variant="white" className="mx-auto">
-          <span className="mr-2">⏱️</span> 0:20
-        </Badge>
+    <div className="relative h-full">
+      <TimeOutOverlay />
 
-        <h3 className="text-center text-white text-[24px] leading-[1.2] font-bold max-w-2xl mx-auto py-4 [text-shadow:var(--text-shadow-outline)]">
-          {currentQuestionTitle}
-        </h3>
-        <div className="px-12 space-y-12">
-          <QuizAnswers />
+      <div
+        className={`flex flex-col gap-4 bg-secondary h-full transition-all duration-700 ${
+          isTimeOut ? "blur-md grayscale-[0.5]" : ""
+        }`}
+      >
+        <div className="flex flex-col gap-4 bg-primary-shadow rounded-lg h-full p-4">
+          <QuizTimer />
 
-          <div className="flex flex-col justify-center gap-4 max-w-xl mx-auto">
-            <Button variant={isSelectionComplete ? 'primary' : 'disabled'}>Klaar!</Button>
-            <Button variant="white">Geef me een tip</Button>
+          <motion.h3
+            key={currentQuestionTitle}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center text-white text-3xl leading-tight font-black max-w-2xl mx-auto py-6 tracking-tight [text-shadow:2px_2px_0px_rgba(0,0,0,0.2)]"
+          >
+            {currentQuestionTitle}
+          </motion.h3>
+          <div className="px-12 space-y-12">
+            <QuizAnswers />
+
+            <div className="flex flex-col justify-center gap-4 max-w-xl mx-auto">
+              <Button variant={isSelectionComplete ? "primary" : "disabled"}>
+                Klaar!
+              </Button>
+              <Button variant="white">Geef me een tip</Button>
+            </div>
           </div>
         </div>
       </div>
