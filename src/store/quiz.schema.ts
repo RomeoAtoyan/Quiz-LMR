@@ -18,6 +18,7 @@ interface QuizStore {
   quizData: QuizQuestion[];
   currentQuestionTitle: string;
   currentAnswers: Answer[];
+  isSelectionComplete: boolean;
 
   selectAnswer: (id: string) => void;
   fetchQuiz: () => Promise<void>;
@@ -31,6 +32,7 @@ export const useQuizStore = create<QuizStore>()((set) => ({
   quizData: [],
   currentQuestionTitle: "",
   currentAnswers: [],
+  isSelectionComplete: false,
 
   selectAnswer: (id) =>
     set((state) => {
@@ -41,8 +43,11 @@ export const useQuizStore = create<QuizStore>()((set) => ({
         return {};
       }
 
+      const requiredAmount = state.currentAnswers.filter((a) => a.correct).length;
+
       return {
         selectedAnswers: [...state.selectedAnswers, id],
+        isSelectionComplete: [...state.selectedAnswers, id].length === requiredAmount,
       };
     }),
 
@@ -53,11 +58,12 @@ export const useQuizStore = create<QuizStore>()((set) => ({
       if (!response.ok) throw new Error("Error fetching quiz data ...");
 
       const data: QuizQuestion[] = await response.json();
-      set({ 
-        quizData: data, 
+      set({
+        quizData: data,
         isLoading: false,
         currentQuestionTitle: data[0]?.question || "",
         currentAnswers: data[0]?.answers || [],
+        isSelectionComplete: false,
       });
     } catch (error) {
       console.error(error);
@@ -69,7 +75,7 @@ export const useQuizStore = create<QuizStore>()((set) => ({
     set((state) => {
       const nextIndex = state.questionIndex + 1;
       const nextQuestion = state.quizData[nextIndex];
-      
+
       if (!nextQuestion) return {};
 
       return {
@@ -77,6 +83,7 @@ export const useQuizStore = create<QuizStore>()((set) => ({
         selectedAnswers: [],
         currentQuestionTitle: nextQuestion.question,
         currentAnswers: nextQuestion.answers,
+        isSelectionComplete: false,
       };
     }),
 }));

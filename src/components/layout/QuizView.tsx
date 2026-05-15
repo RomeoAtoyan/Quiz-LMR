@@ -5,6 +5,7 @@ import Button from "../ui/Button";
 
 const QuizView = () => {
   const currentQuestionTitle = useQuizStore((state) => state.currentQuestionTitle);
+  const isSelectionComplete = useQuizStore((state) => state.isSelectionComplete);
 
   return (
     <div className="flex flex-col gap-4 bg-secondary h-full">
@@ -20,7 +21,7 @@ const QuizView = () => {
           <QuizAnswers />
 
           <div className="flex flex-col justify-center gap-4 max-w-xl mx-auto">
-            <Button variant="disabled">Klaar!</Button>
+            <Button variant={isSelectionComplete ? 'primary' : 'disabled'}>Klaar!</Button>
             <Button variant="white">Geef me een tip</Button>
           </div>
         </div>
