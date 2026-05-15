@@ -59,6 +59,9 @@ export const useQuizStore = create<QuizStore>()((set) => ({
   fetchQuiz: async () => {
     set({ isLoading: true });
     try {
+      // Artificial delay to show off the skeletons
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      
       const response = await fetch("/quiz.json");
       if (!response.ok) throw new Error("Error fetching quiz data ...");
 

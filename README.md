@@ -25,6 +25,8 @@ What I implemented:
 - Responsive for mobile and tablet
 - Timer & timeout overlay
 - Confetti on perfect score
+- Loading skeleton screen (for fetch time)
+- Artificial delay to show off the skeletons
 
 
 Architecture & Standards:
