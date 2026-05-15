@@ -1,26 +1,31 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import QuizView from "../components/layout/QuizView";
 import Sidebar from "../components/layout/Sidebar";
 import { useQuizStore } from "../store/quiz.schema";
 
 const Quiz = () => {
+  const [canStartTimer, setCanStartTimer] = useState(false);
   const fetchQuiz = useQuizStore((state) => state.fetchQuiz);
   const decrementTime = useQuizStore((state) => state.decrementTime);
-
   const isSubmitted = useQuizStore((state) => state.isSubmitted);
 
   useEffect(() => {
     fetchQuiz();
+    
+    const timer = setTimeout(() => {
+      setCanStartTimer(true);
+    }, 1000);
+    return () => clearTimeout(timer);
   }, [fetchQuiz]);
 
   useEffect(() => {
-    if (isSubmitted) return;
+    if (isSubmitted || !canStartTimer) return;
 
     const timer = setInterval(() => {
       decrementTime();
     }, 1000);
     return () => clearInterval(timer);
-  }, [decrementTime, isSubmitted]);
+  }, [decrementTime, isSubmitted, canStartTimer]);
   
   return (
     <div className="h-full p-6 bg-primary">
