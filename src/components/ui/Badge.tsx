@@ -14,7 +14,7 @@ const variantClasses: Record<Variant, string> = {
   secondary:
     "bg-primary text-white shadow-[0_6px_0px_var(--color-primary-shadow)]",
   white:
-    "bg-white text-primary shadow-[0_6px_0px_var(--color-primary-shadow)]",
+    "bg-white text-primary shadow-[0_6px_0px_var(--color-primary)]",
 };
 
 const baseClasses =
