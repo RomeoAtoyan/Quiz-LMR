@@ -3,6 +3,7 @@ import type {
   AnchorHTMLAttributes,
   ReactNode,
 } from "react";
+import { motion, useAnimation } from "framer-motion";
 
 type Variant = "primary" | "secondary" | "disabled" | "white";
 
@@ -50,25 +51,44 @@ const Button = (props: ButtonProps) => {
 
   const effectiveVariant = rest.disabled ? "disabled" : variant;
   const classes = `${baseClasses} ${variantClasses[effectiveVariant]} ${className}`;
+  const controls = useAnimation();
+
+  const handleAction = (e: React.MouseEvent) => {
+    if (effectiveVariant === "disabled") {
+      controls.start({
+        x: [-4, 4, -4, 4, 0],
+        transition: { duration: 0.4 },
+      });
+    }
+    if (props.onClick) {
+      props.onClick(e as any);
+    }
+  };
 
   if (as === "a") {
+    const { disabled: _, ...linkRest } = rest;
     return (
-      <a
+      <motion.a
         className={classes}
-        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
+        {...(linkRest as AnchorHTMLAttributes<HTMLAnchorElement>)}
+        animate={controls}
+        onClick={handleAction}
       >
         {children}
-      </a>
+      </motion.a>
     );
   }
 
+  const { disabled: _, ...buttonRest } = rest;
   return (
-    <button
+    <motion.button
       className={classes}
-      {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
+      {...(buttonRest as ButtonHTMLAttributes<HTMLButtonElement>)}
+      animate={controls}
+      onClick={handleAction}
     >
       {children}
-    </button>
+    </motion.button>
   );
 };
 
