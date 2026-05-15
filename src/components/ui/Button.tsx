@@ -27,18 +27,17 @@ type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-secondary-btn text-primary shadow-[0_6px_0px_var(--color-secondary-shadow)] hover:shadow-[0_8px_0px_var(--color-secondary-shadow)]",
+    "bg-secondary-btn text-primary shadow-[0_6px_0px_var(--color-secondary-shadow)] hover:shadow-[0_8px_0px_var(--color-secondary-shadow)] hover:translate-y-[-2px] active:translate-y-[4px] active:shadow-none",
   secondary:
-    "bg-primary text-white shadow-[0_6px_0px_var(--color-primary-shadow)] hover:shadow-[0_8px_0px_var(--color-primary-shadow)]",
+    "bg-primary text-white shadow-[0_6px_0px_var(--color-primary-shadow)] hover:shadow-[0_8px_0px_var(--color-primary-shadow)] hover:translate-y-[-2px] active:translate-y-[4px] active:shadow-none",
   disabled:
     "bg-disabled-bg text-primary shadow-[0_6px_0px_var(--color-disabled-shadow)] cursor-not-allowed",
   white:
-    "bg-white text-primary shadow-[0_6px_0px_var(--color-disabled-bg)] hover:shadow-[0_8px_0px_var(--color-disabled-bg)]",
+    "bg-white text-primary shadow-[0_6px_0px_var(--color-disabled-bg)] hover:shadow-[0_8px_0px_var(--color-disabled-bg)] hover:translate-y-[-2px] active:translate-y-[4px] active:shadow-none",
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center px-4 py-4 rounded-lg font-bold cursor-pointer transition-all duration-150 ease-out transform " +
-  "hover:translate-y-[-2px] active:translate-y-[4px] active:shadow-none disabled:cursor-not-allowed";
+  "inline-flex items-center justify-center px-4 py-4 rounded-lg font-bold transition-all duration-150 ease-out transform disabled:cursor-not-allowed";
 
 const Button = (props: ButtonProps) => {
   const {
