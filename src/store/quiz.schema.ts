@@ -39,18 +39,14 @@ export const useQuizStore = create<QuizStore>()((set) => ({
 
   selectAnswer: (id) =>
     set((state) => {
-      if (
-        state.selectedAnswers.includes(id) ||
-        state.selectedAnswers.length >= 3
-      ) {
-        return {};
-      }
-
-      const requiredAmount = state.currentAnswers.filter((a) => a.correct).length;
+      const isSelected = state.selectedAnswers.includes(id);
+      const newSelected = isSelected
+        ? state.selectedAnswers.filter((item) => item !== id)
+        : [...state.selectedAnswers, id];
 
       return {
-        selectedAnswers: [...state.selectedAnswers, id],
-        isSelectionComplete: [...state.selectedAnswers, id].length === requiredAmount,
+        selectedAnswers: newSelected,
+        isSelectionComplete: newSelected.length >= 1,
       };
     }),
 
