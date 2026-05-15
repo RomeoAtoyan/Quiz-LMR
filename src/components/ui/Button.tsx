@@ -4,7 +4,7 @@ import type {
   ReactNode,
 } from "react";
 
-type Variant = "primary" | "secondary" | "disabled";
+type Variant = "primary" | "secondary" | "disabled" | "white";
 
 type BaseProps = {
   variant?: Variant;
@@ -31,6 +31,8 @@ const variantClasses: Record<Variant, string> = {
     "bg-primary text-white shadow-[0_6px_0px_var(--color-primary-shadow)] hover:shadow-[0_8px_0px_var(--color-primary-shadow)]",
   disabled:
     "bg-disabled-bg text-primary shadow-[0_6px_0px_var(--color-disabled-shadow)] cursor-not-allowed",
+  white:
+    "bg-white text-primary shadow-[0_6px_0px_var(--color-disabled-bg)] hover:shadow-[0_8px_0px_var(--color-disabled-bg)]",
 };
 
 const baseClasses =
