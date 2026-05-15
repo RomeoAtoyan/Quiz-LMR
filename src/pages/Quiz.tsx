@@ -7,16 +7,20 @@ const Quiz = () => {
   const fetchQuiz = useQuizStore((state) => state.fetchQuiz);
   const decrementTime = useQuizStore((state) => state.decrementTime);
 
+  const isSubmitted = useQuizStore((state) => state.isSubmitted);
+
   useEffect(() => {
     fetchQuiz();
   }, [fetchQuiz]);
 
   useEffect(() => {
+    if (isSubmitted) return;
+
     const timer = setInterval(() => {
       decrementTime();
     }, 1000);
     return () => clearInterval(timer);
-  }, [decrementTime]);
+  }, [decrementTime, isSubmitted]);
   
   return (
     <div className="h-full p-6 bg-primary">

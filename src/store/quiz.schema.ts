@@ -19,9 +19,11 @@ interface QuizStore {
   currentQuestionTitle: string;
   currentAnswers: Answer[];
   isSelectionComplete: boolean;
+  isSubmitted: boolean;
   timeLeft: number;
 
   selectAnswer: (id: string) => void;
+  submitAnswer: () => void;
   fetchQuiz: () => Promise<void>;
   nextQuestion: () => void;
   decrementTime: () => void;
@@ -35,10 +37,12 @@ export const useQuizStore = create<QuizStore>()((set) => ({
   currentQuestionTitle: "",
   currentAnswers: [],
   isSelectionComplete: false,
+  isSubmitted: false,
   timeLeft: 0,
 
   selectAnswer: (id) =>
     set((state) => {
+      if (state.isSubmitted) return {};
       const isSelected = state.selectedAnswers.includes(id);
       const newSelected = isSelected
         ? state.selectedAnswers.filter((item) => item !== id)
@@ -49,6 +53,8 @@ export const useQuizStore = create<QuizStore>()((set) => ({
         isSelectionComplete: newSelected.length >= 1,
       };
     }),
+
+  submitAnswer: () => set({ isSubmitted: true }),
 
   fetchQuiz: async () => {
     set({ isLoading: true });
@@ -63,6 +69,7 @@ export const useQuizStore = create<QuizStore>()((set) => ({
         currentQuestionTitle: data[0]?.question || "",
         currentAnswers: data[0]?.answers || [],
         isSelectionComplete: false,
+        isSubmitted: false,
         timeLeft: data[0]?.time_limit_s || 0,
       });
     } catch (error) {
@@ -84,6 +91,7 @@ export const useQuizStore = create<QuizStore>()((set) => ({
         currentQuestionTitle: nextQuestion.question,
         currentAnswers: nextQuestion.answers,
         isSelectionComplete: false,
+        isSubmitted: false,
         timeLeft: nextQuestion.time_limit_s || 0,
       };
     }),
