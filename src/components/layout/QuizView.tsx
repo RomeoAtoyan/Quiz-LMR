@@ -70,7 +70,11 @@ const QuizView = () => {
                 <div className="flex flex-col justify-center gap-4 max-w-xl mx-auto">
                   <Button
                     variant={isSelectionComplete ? "primary" : "disabled"}
-                    onClick={handleAction}
+                    onClick={() => {
+                      if (isSelectionComplete || isSubmitted) {
+                        handleAction();
+                      }
+                    }}
                   >
                     {isSubmitted
                       ? (isLastQuestion ? "Resultaten bekijken" : "Doorgaan")
