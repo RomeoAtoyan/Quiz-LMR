@@ -46,10 +46,10 @@ const Sidebar = () => {
 
         <div className="mt-14 px-8 py-6 flex flex-col items-center text-center gap-6">
           <div className="flex flex-col items-center gap-2">
-            <h2 className="text-3xl font-black text-primary uppercase tracking-tight">
+            <h2 className="text-3xl font-black text-primary tracking-tight">
               Drukkerij
             </h2>
-            <div className="w-16 h-1 bg-primary/30 rounded-full" />
+            <div className="w-16 h-1 bg-primary rounded-full" />
           </div>
 
           <div className="space-y-4">
