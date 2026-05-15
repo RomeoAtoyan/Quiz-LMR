@@ -4,7 +4,7 @@ import type {
   ReactNode,
 } from "react";
 
-type Variant = "primary" | "secondary";
+type Variant = "primary" | "secondary" | "disabled";
 
 type BaseProps = {
   variant?: Variant;
@@ -29,11 +29,13 @@ const variantClasses: Record<Variant, string> = {
     "bg-secondary-btn text-primary shadow-[0_6px_0px_var(--color-secondary-shadow)] hover:shadow-[0_8px_0px_var(--color-secondary-shadow)]",
   secondary:
     "bg-primary text-white shadow-[0_6px_0px_var(--color-primary-shadow)] hover:shadow-[0_8px_0px_var(--color-primary-shadow)]",
+  disabled:
+    "bg-disabled-bg text-primary shadow-[0_6px_0px_var(--color-disabled-shadow)] cursor-not-allowed",
 };
 
 const baseClasses =
   "inline-flex items-center justify-center px-4 py-4 rounded-lg font-bold cursor-pointer transition-all duration-150 ease-out transform " +
-  "hover:translate-y-[-2px] active:translate-y-[4px] active:shadow-none disabled:opacity-50 disabled:cursor-not-allowed";
+  "hover:translate-y-[-2px] active:translate-y-[4px] active:shadow-none disabled:cursor-not-allowed";
 
 const Button = (props: ButtonProps) => {
   const {
@@ -44,7 +46,8 @@ const Button = (props: ButtonProps) => {
     ...rest
   } = props as any;
 
-  const classes = `${baseClasses} ${variantClasses[variant]} ${className}`;
+  const effectiveVariant = rest.disabled ? "disabled" : variant;
+  const classes = `${baseClasses} ${variantClasses[effectiveVariant]} ${className}`;
 
   if (as === "a") {
     return (

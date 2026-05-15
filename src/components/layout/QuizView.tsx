@@ -17,7 +17,7 @@ const QuizView = () => {
           <QuizAnswers />
 
           <div className="flex flex-col justify-center gap-4 max-w-xl mx-auto">
-            <Button>Klaar!</Button>
+            <Button variant="disabled">Klaar!</Button>
             <Button>Geef me een tip</Button>
           </div>
         </div>

@@ -19,6 +19,9 @@
   --color-answer-bg: #C2E2FE;
   --color-answer-shadow: #8AB4D9;
 
+  --color-disabled-bg: #E3E5E7;
+  --color-disabled-shadow: #9097A0;
+
   --text-shadow-outline: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 0 4px 4px rgba(0,0,0,0.5);
 }
 
