@@ -66,11 +66,18 @@ const Button = (props: ButtonProps) => {
   };
 
   if (as === "a") {
-    const { disabled: _, ...linkRest } = rest;
+    const {
+      disabled: _,
+      onAnimationStart,
+      onDragStart,
+      onDragEnd,
+      onDrag,
+      ...linkRest
+    } = rest;
     return (
       <motion.a
         className={classes}
-        {...(linkRest as AnchorHTMLAttributes<HTMLAnchorElement>)}
+        {...(linkRest as any)}
         animate={controls}
         onClick={handleAction}
       >
@@ -79,11 +86,18 @@ const Button = (props: ButtonProps) => {
     );
   }
 
-  const { disabled: _, ...buttonRest } = rest;
+  const {
+    disabled: _,
+    onAnimationStart,
+    onDragStart,
+    onDragEnd,
+    onDrag,
+    ...buttonRest
+  } = rest;
   return (
     <motion.button
       className={classes}
-      {...(buttonRest as ButtonHTMLAttributes<HTMLButtonElement>)}
+      {...(buttonRest as any)}
       animate={controls}
       onClick={handleAction}
     >
