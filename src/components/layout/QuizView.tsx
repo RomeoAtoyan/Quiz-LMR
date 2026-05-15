@@ -8,11 +8,15 @@ import Button from "../ui/Button";
 
 const QuizView = () => {
   const currentQuestionTitle = useQuizStore((state) => state.currentQuestionTitle);
+  const questionIndex = useQuizStore((state) => state.questionIndex);
+  const quizData = useQuizStore((state) => state.quizData);
   const isSelectionComplete = useQuizStore((state) => state.isSelectionComplete);
   const isSubmitted = useQuizStore((state) => state.isSubmitted);
   const submitAnswer = useQuizStore((state) => state.submitAnswer);
   const nextQuestion = useQuizStore((state) => state.nextQuestion);
   const { isTimeOut } = useQuizTimer();
+
+  const isLastQuestion = questionIndex === quizData.length - 1;
 
   const handleAction = () => {
     if (isSubmitted) {
@@ -55,7 +59,9 @@ const QuizView = () => {
                     variant={isSelectionComplete ? "primary" : "disabled"}
                     onClick={handleAction}
                   >
-                    {isSubmitted ? "Doorgaan" : "Klaar!"}
+                    {isSubmitted 
+                      ? (isLastQuestion ? "Resultaten bekijken" : "Doorgaan") 
+                      : "Klaar!"}
                   </Button>
                   <Button variant="white">Geef me een tip</Button>
                 </div>

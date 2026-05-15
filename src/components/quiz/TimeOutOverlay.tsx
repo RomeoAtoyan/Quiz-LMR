@@ -6,7 +6,11 @@ import Button from "../ui/Button";
 
 const TimeOutOverlay = () => {
   const { isTimeOut } = useQuizTimer();
+  const questionIndex = useQuizStore((state) => state.questionIndex);
+  const quizData = useQuizStore((state) => state.quizData);
   const nextQuestion = useQuizStore((state) => state.nextQuestion);
+  
+  const isLastQuestion = questionIndex === quizData.length - 1;
 
   return (
     <AnimatePresence>
@@ -29,10 +33,10 @@ const TimeOutOverlay = () => {
               Oei, je tijd is om!
             </h2>
             <p className="text-primary-shadow font-bold">
-              Je was net te traag. Geen zorgen, probeer de volgende vraag!
+              Je was net te traag. Geen zorgen, {isLastQuestion ? "bekijk je resultaten!" : "probeer de volgende vraag!"}
             </p>
             <Button onClick={() => nextQuestion()} className="w-full">
-              Volgende vraag
+              {isLastQuestion ? "Bekijk resultaten" : "Volgende vraag"}
             </Button>
           </motion.div>
         </motion.div>
