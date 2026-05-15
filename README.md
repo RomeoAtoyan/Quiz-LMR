@@ -11,6 +11,12 @@ What I used:
  - Zustand
  - Framer Motion
 
+Key Focus Areas:
+- Algemeen plan-van-aanpak: A clear strategy for scaling from a component to a full game.
+- Robuuste en uitbreidbare projectstructuur: Clean, maintainable architecture.
+- Herbruikbaarheid van componenten: Flexible, "dumb" UI components.
+- Een goeie UX voor de eindgebruiker: Smooth animations, responsive design, and intuitive feedback loops.
+
 What I implemented:
 - Dynamic API data fetching
 - Multiple choice selection with 1+ options
@@ -36,3 +42,9 @@ Full Project Approach (All screens):
 - Gamification: Incorporating sound effects, score systems, and feedback loops to keep players engaged.
 - Interactive Map: Researching and selecting the best map library to handle the game's navigation and progression.
 - Folder Organization: Scaling the current structure to group components by specific pages or shared features for better discoverability.
+
+
+Dependencies & Risks:
+- Backend Data Structure: To make the game more robust, I'd recommend the following improvements to the JSON schema:
+    - Unique IDs: Add IDs for questions and answers to avoid relying on string matching in the state.
+    - Explicit Correct Answers: Providing a `correctAnswerIds` array at the question level would simplify validation logic.
