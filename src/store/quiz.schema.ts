@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
-interface Answer {
+export interface Answer {
   answer: string;
   correct: boolean;
 }
 
-interface QuizQuestion {
+export interface QuizQuestion {
   question: string;
   time_limit_s: number;
   answers: Answer[];
@@ -16,9 +16,12 @@ interface QuizStore {
   selectedAnswers: string[];
   isLoading: boolean;
   quizData: QuizQuestion[];
+  currentQuestionTitle: string;
+  currentAnswers: Answer[];
 
   selectAnswer: (id: string) => void;
   fetchQuiz: () => Promise<void>;
+  nextQuestion: () => void;
 }
 
 export const useQuizStore = create<QuizStore>()((set) => ({
@@ -26,6 +29,8 @@ export const useQuizStore = create<QuizStore>()((set) => ({
   selectedAnswers: [],
   isLoading: false,
   quizData: [],
+  currentQuestionTitle: "",
+  currentAnswers: [],
 
   selectAnswer: (id) =>
     set((state) => {
@@ -35,6 +40,7 @@ export const useQuizStore = create<QuizStore>()((set) => ({
       ) {
         return {};
       }
+
       return {
         selectedAnswers: [...state.selectedAnswers, id],
       };
@@ -46,11 +52,31 @@ export const useQuizStore = create<QuizStore>()((set) => ({
       const response = await fetch("/quiz.json");
       if (!response.ok) throw new Error("Error fetching quiz data ...");
 
-      const data = await response.json();
-      set({ quizData: data, isLoading: false });
+      const data: QuizQuestion[] = await response.json();
+      set({ 
+        quizData: data, 
+        isLoading: false,
+        currentQuestionTitle: data[0]?.question || "",
+        currentAnswers: data[0]?.answers || [],
+      });
     } catch (error) {
       console.error(error);
       set({ isLoading: false });
     }
   },
+
+  nextQuestion: () =>
+    set((state) => {
+      const nextIndex = state.questionIndex + 1;
+      const nextQuestion = state.quizData[nextIndex];
+      
+      if (!nextQuestion) return {};
+
+      return {
+        questionIndex: nextIndex,
+        selectedAnswers: [],
+        currentQuestionTitle: nextQuestion.question,
+        currentAnswers: nextQuestion.answers,
+      };
+    }),
 }));
