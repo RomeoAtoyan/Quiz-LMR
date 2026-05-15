@@ -8,7 +8,7 @@ const QuizAnswers = () => {
   const isSubmitted = useQuizStore((state) => state.isSubmitted);
 
   return (
-    <div className="grid grid-cols-2 gap-x-8 gap-y-6">
+    <div className="grid grid-cols-2 gap-x-4 lg:gap-x-8 gap-y-4 lg:gap-y-6">
       {answers.map((a, index) => (
         <QuizAnswerButton
           isSelected={selectedAnswers.includes(a.answer)}

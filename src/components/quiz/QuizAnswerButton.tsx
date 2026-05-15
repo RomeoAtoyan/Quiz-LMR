@@ -63,7 +63,7 @@ const QuizAnswerButton = ({
     <motion.button
       animate={getStyles()}
       transition={{ duration: 0.2, ease: "easeOut" }}
-      className={`px-8 py-4 rounded-lg text-xl font-bold transition-transform active:scale-95 shadow-[0_4px_0px_rgba(0,0,0,0.1)] ${className}`}
+      className={`px-4 lg:px-8 py-3 lg:py-4 rounded-lg text-lg lg:text-xl font-bold transition-transform active:scale-95 shadow-[0_4px_0px_rgba(0,0,0,0.1)] ${className}`}
       {...cleanProps}
     >
       {children}

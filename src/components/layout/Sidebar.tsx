@@ -4,7 +4,7 @@ import Badge from "../ui/Badge";
 
 const Sidebar = () => {
   return (
-    <div className="col-span-4 flex flex-col h-full bg-secondary rounded-2xl p-6 gap-3">
+    <div className="w-full lg:col-span-4 flex flex-col h-auto lg:h-full bg-secondary rounded-2xl p-4 lg:p-6 gap-3">
       <div className="flex-1 flex flex-col bg-content-bg rounded-lg overflow-hidden shadow-[inset_0_4px_10px_rgba(0,0,0,0.1)] relative">
         <div className="h-44 w-full relative">
           <img
@@ -14,25 +14,25 @@ const Sidebar = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/10" />
 
-          <div className="absolute top-4 left-4 right-4 flex items-center gap-2">
+          <div className="absolute top-4 left-4 right-4 flex flex-col xl:flex-row items-stretch xl:items-center gap-2">
             <Badge
               variant="secondary"
               shape="xl"
-              className="px-4 py-2 min-w-[120px] gap-2"
+              className="px-3 py-1.5 xl:px-4 xl:py-2 gap-2 justify-center"
             >
-              <Timer size={20} />
-              <span className="text-2xl font-black">42:32</span>
+              <Timer size={18} className="xl:w-5 xl:h-5" />
+              <span className="text-lg xl:text-2xl font-black">42:32</span>
             </Badge>
 
             <Badge
               variant="secondary"
               shape="xl"
-              className="flex-1 px-4 py-2 gap-4"
+              className="flex-1 px-3 py-1.5 xl:px-4 xl:py-2 gap-2 xl:gap-4"
             >
-              <div className="flex-1 h-8 bg-[#002D4F] rounded-lg overflow-hidden flex items-center p-1.5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]">
+              <div className="flex-1 h-6 xl:h-8 bg-[#002D4F] rounded-lg overflow-hidden flex items-center p-1 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]">
                 <div className="w-[15%] h-full bg-progress-fill rounded-md shadow-[0_0_10px_rgba(243,192,16,0.4)]" />
               </div>
-              <div className="text-2xl font-black whitespace-nowrap">
+              <div className="text-lg xl:text-2xl font-black whitespace-nowrap">
                 Level 2 / 8
               </div>
             </Badge>
@@ -75,18 +75,18 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="flex items-center justify-center gap-3 w-full">
-        <Button variant="secondary" className="p-3">
-          <BadgeQuestionMark size={24} />
+      <div className="flex flex-wrap items-center justify-center gap-2 xl:gap-3 w-full">
+        <Button variant="secondary" className="p-2 xl:p-3">
+          <BadgeQuestionMark size={20} className="xl:w-6 xl:h-6" />
         </Button>
-        <Button variant="secondary" className="p-3">
-          <RotateCw size={24} />
+        <Button variant="secondary" className="p-2 xl:p-3">
+          <RotateCw size={20} className="xl:w-6 xl:h-6" />
         </Button>
-        <Button variant="secondary" className="p-3">
-          <VolumeOff size={24} />
+        <Button variant="secondary" className="p-2 xl:p-3">
+          <VolumeOff size={20} className="xl:w-6 xl:h-6" />
         </Button>
-        <Button className="flex-1 gap-2 py-3 px-6 text-lg">
-          <Map size={24} />
+        <Button className="flex-1 gap-1 xl:gap-2 py-2 px-4 xl:py-3 xl:px-6 text-base xl:text-lg min-w-[140px] justify-center whitespace-nowrap">
+          <Map size={20} className="xl:w-6 xl:h-6" />
           Naar de kaart
         </Button>
       </div>

@@ -60,11 +60,11 @@ const QuizView = () => {
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="flex flex-col h-full"
             >
-              <h3 className="text-center text-white text-3xl leading-tight font-black max-w-2xl mx-auto py-6 tracking-tight [text-shadow:var(--text-shadow-outline)]">
+              <h3 className="text-center text-white text-2xl lg:text-3xl leading-tight font-black max-w-2xl mx-auto py-4 lg:py-6 tracking-tight [text-shadow:var(--text-shadow-outline)]">
                 {currentQuestionTitle}
               </h3>
 
-              <div className="px-12 space-y-12 flex-grow">
+              <div className="px-2 lg:px-12 space-y-6 lg:space-y-12 flex-grow">
                 <QuizAnswers />
 
                 <div className="flex flex-col justify-center gap-4 max-w-xl mx-auto">
