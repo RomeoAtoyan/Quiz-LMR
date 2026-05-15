@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useQuizStore } from "../../store/quiz.schema";
 import { useQuizTimer } from "../../hooks/useQuizTimer";
+import { useConfetti } from "../../hooks/useConfetti";
 import QuizAnswers from "../quiz/QuizAnswers";
 import QuizTimer from "../quiz/QuizTimer";
 import TimeOutOverlay from "../quiz/TimeOutOverlay";
@@ -12,11 +13,24 @@ const QuizView = () => {
   const quizData = useQuizStore((state) => state.quizData);
   const isSelectionComplete = useQuizStore((state) => state.isSelectionComplete);
   const isSubmitted = useQuizStore((state) => state.isSubmitted);
+  const selectedAnswers = useQuizStore((state) => state.selectedAnswers);
+  const currentAnswers = useQuizStore((state) => state.currentAnswers);
   const submitAnswer = useQuizStore((state) => state.submitAnswer);
   const nextQuestion = useQuizStore((state) => state.nextQuestion);
   const { isTimeOut } = useQuizTimer();
 
   const isLastQuestion = questionIndex === quizData.length - 1;
+
+  const correctAnswers = currentAnswers
+    .filter((a) => a.correct)
+    .map((a) => a.answer);
+
+  const isPerfect =
+    isSubmitted &&
+    selectedAnswers.length === correctAnswers.length &&
+    selectedAnswers.every((a) => correctAnswers.includes(a));
+
+  useConfetti(isPerfect);
 
   const handleAction = () => {
     if (isSubmitted) {
@@ -31,9 +45,8 @@ const QuizView = () => {
       <TimeOutOverlay />
 
       <div
-        className={`flex flex-col gap-4 bg-secondary h-full transition-all duration-700 ${
-          isTimeOut ? "blur-md grayscale-[0.5]" : ""
-        }`}
+        className={`flex flex-col gap-4 bg-secondary h-full transition-all duration-700 ${isTimeOut ? "blur-md grayscale-[0.5]" : ""
+          }`}
       >
         <div className="flex flex-col gap-4 bg-primary-shadow rounded-lg h-full p-4 overflow-hidden">
           <QuizTimer />
@@ -50,7 +63,7 @@ const QuizView = () => {
               <h3 className="text-center text-white text-3xl leading-tight font-black max-w-2xl mx-auto py-6 tracking-tight [text-shadow:2px_2px_0px_rgba(0,0,0,0.2)]">
                 {currentQuestionTitle}
               </h3>
-              
+
               <div className="px-12 space-y-12 flex-grow">
                 <QuizAnswers />
 
@@ -59,8 +72,8 @@ const QuizView = () => {
                     variant={isSelectionComplete ? "primary" : "disabled"}
                     onClick={handleAction}
                   >
-                    {isSubmitted 
-                      ? (isLastQuestion ? "Resultaten bekijken" : "Doorgaan") 
+                    {isSubmitted
+                      ? (isLastQuestion ? "Resultaten bekijken" : "Doorgaan")
                       : "Klaar!"}
                   </Button>
                   <Button variant="white">Geef me een tip</Button>
