@@ -1,6 +1,7 @@
 import { BadgeQuestionMark, Map, RotateCw, VolumeOff, Timer } from "lucide-react";
 import Button from "../ui/Button";
 import Badge from "../ui/Badge";
+import EyeFollower from "./EyeFollower";
 
 const Sidebar = () => {
   return (
@@ -40,19 +41,8 @@ const Sidebar = () => {
         </div>
 
         <div className="absolute top-32 left-1/2 -translate-x-1/2">
-          <div className="w-28 h-28 rounded-full border-[6px] border-content-bg bg-white overflow-hidden shadow-xl transform transition-transform hover:scale-105">
-            <img
-              src="/src/assets/avatar.png"
-              alt="Avatar"
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                e.currentTarget.src =
-                  "https://placehold.co/200x200/0C6AAE/FFFFFF?text=Avatar";
-              }}
-            />
-          </div>
+          <EyeFollower />
         </div>
-
 
         <div className="mt-14 px-8 py-6 flex flex-col items-center text-center gap-6">
           <div className="flex flex-col items-center gap-2">
