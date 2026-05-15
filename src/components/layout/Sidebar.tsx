@@ -1,5 +1,6 @@
 import { BadgeQuestionMark, Map, RotateCw, VolumeOff, Timer } from "lucide-react";
 import Button from "../ui/Button";
+import Badge from "../ui/Badge";
 
 const Sidebar = () => {
   return (
@@ -13,18 +14,28 @@ const Sidebar = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/10" />
 
-          <div className="absolute top-4 left-4 right-4 flex items-center justify-between bg-primary/40 backdrop-blur-sm rounded-xl px-3 py-2 text-white font-bold text-sm">
-            <div className="flex items-center gap-1.5 bg-primary/60 px-3 py-1 rounded-lg">
-              <Timer size={16} />
-              <span>42:32</span>
-            </div>
-            <div className="flex-1 mx-4 h-5 bg-progress-bg rounded-full relative overflow-hidden flex items-center px-1 border border-white/10">
-              <div className="w-[15%] h-3 bg-progress-fill rounded-full" />
-              <div className="absolute left-1 w-3 h-3 bg-progress-fill rounded-full shadow-[0_0_8px_rgba(243,192,16,0.6)]" />
-            </div>
-            <div className="text-xs uppercase tracking-wider opacity-90">
-              Level 2 / 8
-            </div>
+          <div className="absolute top-4 left-4 right-4 flex items-center gap-2">
+            <Badge
+              variant="secondary"
+              shape="xl"
+              className="px-4 py-2 min-w-[120px] gap-2"
+            >
+              <Timer size={20} />
+              <span className="text-2xl font-black">42:32</span>
+            </Badge>
+
+            <Badge
+              variant="secondary"
+              shape="xl"
+              className="flex-1 px-4 py-2 gap-4"
+            >
+              <div className="flex-1 h-8 bg-[#002D4F] rounded-lg overflow-hidden flex items-center p-1.5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]">
+                <div className="w-[15%] h-full bg-progress-fill rounded-md shadow-[0_0_10px_rgba(243,192,16,0.4)]" />
+              </div>
+              <div className="text-2xl font-black whitespace-nowrap">
+                Level 2 / 8
+              </div>
+            </Badge>
           </div>
         </div>
 
