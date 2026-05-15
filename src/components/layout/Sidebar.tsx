@@ -3,10 +3,8 @@ import Button from "../ui/Button";
 
 const Sidebar = () => {
   return (
-    <div className="col-span-4 flex flex-col h-full bg-secondary rounded-3xl p-6 gap-3">
-      {/* Main Content Card */}
-      <div className="flex-1 flex flex-col bg-content-bg rounded-2xl overflow-hidden shadow-[inset_0_4px_10px_rgba(0,0,0,0.1)] relative">
-        {/* Header Illustration Background */}
+    <div className="col-span-4 flex flex-col h-full bg-secondary rounded-2xl p-6 gap-3">
+      <div className="flex-1 flex flex-col bg-content-bg rounded-lg overflow-hidden shadow-[inset_0_4px_10px_rgba(0,0,0,0.1)] relative">
         <div className="h-44 w-full relative">
           <img
             src="/src/assets/bg_image.png"
@@ -15,7 +13,6 @@ const Sidebar = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/10" />
 
-          {/* Top Status Bar (Overlay) */}
           <div className="absolute top-4 left-4 right-4 flex items-center justify-between bg-primary/40 backdrop-blur-sm rounded-xl px-3 py-2 text-white font-bold text-sm">
             <div className="flex items-center gap-1.5 bg-primary/60 px-3 py-1 rounded-lg">
               <Timer size={16} />
@@ -31,7 +28,6 @@ const Sidebar = () => {
           </div>
         </div>
 
-        {/* Overlapping Avatar */}
         <div className="absolute top-32 left-1/2 -translate-x-1/2">
           <div className="w-28 h-28 rounded-full border-[6px] border-content-bg bg-white overflow-hidden shadow-xl transform transition-transform hover:scale-105">
             <img
