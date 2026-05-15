@@ -22,8 +22,8 @@ const TimeOutOverlay = () => {
             animate={{ scale: 1, opacity: 1 }}
             className="bg-white p-8 rounded-3xl shadow-2xl flex flex-col items-center gap-6 text-center max-w-sm mx-4"
           >
-            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center text-red-500">
-              <Timer size={40} strokeWidth={2.5} />
+            <div className="text-primary">
+              <Timer size={48} strokeWidth={2.5} />
             </div>
             <h2 className="text-primary text-3xl font-black [text-shadow:2px_2px_0px_rgba(0,0,0,0.1)]">
               Oei, je tijd is om!
