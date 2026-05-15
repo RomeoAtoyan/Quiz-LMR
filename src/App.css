@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #004475;
+  --color-secondary: #0C6AAE;
+  --color-tertiary: #3D78A8;
+
+  --color-primary-btn: #004475;
+  --color-secondary-btn: #D2BD1D;
+
+  --color-content-bg: #FFF0F0;
+  --color-status-bg: #004475;
+  --color-progress-bg: #1D5B8E;
+  --color-progress-fill: #F3C010;
+
+  --color-primary-shadow: #0E325B;
+  --color-secondary-shadow: #E1B827;
+}
+
+@layer base {
+  body {
+    @apply font-sans;
+  }
+}
