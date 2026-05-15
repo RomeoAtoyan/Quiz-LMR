@@ -43,6 +43,15 @@ Full Project Approach (All screens):
 - Interactive Map: Researching and selecting the best map library to handle the game's navigation and progression.
 - Folder Organization: Scaling the current structure to group components by specific pages or shared features for better discoverability.
 
+Project Roadmap & Timeframe:
+Estimated lead time for the full 25+ screen game: ~10-12 weeks.
+- Phase 1 (2 weeks): Foundation & Interactive Map
+  Defining global theme variables (colors, spacing, typography), setting up the core navigation/map logic, and analyzing/defining the overall gamification logic (scores, feedback loops, etc.).
+- Phase 2 (4 weeks): Game Engine Development
+  Building reusable logic "engines" for the various mini-games.
+- Phase 3 (4 weeks): Content & Scaling
+  Rapidly building out all 25+ screens.
+- Phase 4 (2 weeks): Polish & Final QA with final animation tweaks. Comprehensive testing across mobile, tablet, and desktop platforms to ensure perfect responsiveness and performance.
 
 Dependencies & Risks:
 - Backend Data Structure: To make the game more robust, I'd recommend the following improvements to the JSON schema:
