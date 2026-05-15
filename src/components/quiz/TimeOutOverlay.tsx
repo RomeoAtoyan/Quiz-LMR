@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Timer } from "lucide-react";
-import { useQuizStore } from "../../store/quiz.schema";
+import { useQuizStore } from "../../store/useQuizStore";
 import { useQuizTimer } from "../../hooks/useQuizTimer";
 import Button from "../ui/Button";
 
@@ -9,7 +9,7 @@ const TimeOutOverlay = () => {
   const questionIndex = useQuizStore((state) => state.questionIndex);
   const quizData = useQuizStore((state) => state.quizData);
   const nextQuestion = useQuizStore((state) => state.nextQuestion);
-  
+
   const isLastQuestion = questionIndex === quizData.length - 1;
 
   return (

@@ -1,4 +1,4 @@
-import { useQuizStore } from "../../store/quiz.schema";
+import { useQuizStore } from "../../store/useQuizStore";
 import QuizAnswerButton from "./QuizAnswerButton";
 
 const QuizAnswers = () => {

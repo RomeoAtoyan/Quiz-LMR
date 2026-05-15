@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useQuizStore } from "../../store/quiz.schema";
+import { useQuizStore } from "../../store/useQuizStore";
 import { useQuizTimer } from "../../hooks/useQuizTimer";
 import { useConfetti } from "../../hooks/useConfetti";
 import QuizAnswers from "../quiz/QuizAnswers";

@@ -1,4 +1,4 @@
-import { useQuizStore } from "../store/quiz.schema";
+import { useQuizStore } from "../store/useQuizStore";
 
 export const useQuizTimer = () => {
   const timeLeft = useQuizStore((state) => state.timeLeft);

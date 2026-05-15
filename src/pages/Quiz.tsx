@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import QuizView from "../components/layout/QuizView";
 import Sidebar from "../components/layout/Sidebar";
-import { useQuizStore } from "../store/quiz.schema";
+import { useQuizStore } from "../store/useQuizStore";
 
 const Quiz = () => {
   const [canStartTimer, setCanStartTimer] = useState(false);
@@ -11,7 +11,7 @@ const Quiz = () => {
 
   useEffect(() => {
     fetchQuiz();
-    
+
     const timer = setTimeout(() => {
       setCanStartTimer(true);
     }, 1000);
@@ -26,7 +26,7 @@ const Quiz = () => {
     }, 1000);
     return () => clearInterval(timer);
   }, [decrementTime, isSubmitted, canStartTimer]);
-  
+
   return (
     <div className="h-full p-2 lg:p-6 bg-primary overflow-y-auto">
       <div className="w-full min-h-full flex flex-col lg:grid lg:grid-cols-12 gap-4 lg:gap-6 p-2 lg:p-4">
