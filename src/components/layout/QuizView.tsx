@@ -7,6 +7,7 @@ import QuizTimer from "../quiz/QuizTimer";
 import TimeOutOverlay from "../quiz/TimeOutOverlay";
 import Button from "../ui/Button";
 import QuizSkeleton from "../quiz/QuizSkeleton";
+import QuizError from "../quiz/QuizError";
 
 const QuizView = () => {
   const currentQuestionTitle = useQuizStore((state) => state.currentQuestionTitle);
@@ -19,6 +20,8 @@ const QuizView = () => {
   const submitAnswer = useQuizStore((state) => state.submitAnswer);
   const nextQuestion = useQuizStore((state) => state.nextQuestion);
   const isLoading = useQuizStore((state) => state.isLoading);
+  const error = useQuizStore((state) => state.error);
+  const fetchQuiz = useQuizStore((state) => state.fetchQuiz);
   const { isTimeOut } = useQuizTimer();
 
   const isLastQuestion = questionIndex === quizData.length - 1;
@@ -54,6 +57,8 @@ const QuizView = () => {
           <AnimatePresence mode="wait">
             {isLoading ? (
               <QuizSkeleton key="skeleton" />
+            ) : error ? (
+              <QuizError key="error" message={error} onRetry={fetchQuiz} />
             ) : (
               <motion.div
                 key="quiz-content"

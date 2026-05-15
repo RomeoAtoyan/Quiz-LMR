@@ -9,12 +9,16 @@ const TimeOutOverlay = () => {
   const questionIndex = useQuizStore((state) => state.questionIndex);
   const quizData = useQuizStore((state) => state.quizData);
   const nextQuestion = useQuizStore((state) => state.nextQuestion);
+  const isLoading = useQuizStore((state) => state.isLoading);
+  const error = useQuizStore((state) => state.error);
 
   const isLastQuestion = questionIndex === quizData.length - 1;
 
+  const shouldShow = isTimeOut && !isLoading && !error;
+
   return (
     <AnimatePresence>
-      {isTimeOut && (
+      {shouldShow && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

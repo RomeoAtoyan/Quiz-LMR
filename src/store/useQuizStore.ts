@@ -21,6 +21,7 @@ interface QuizStore {
   isSelectionComplete: boolean;
   isSubmitted: boolean;
   timeLeft: number;
+  error: string | null;
 
   selectAnswer: (id: string) => void;
   submitAnswer: () => void;
@@ -39,6 +40,7 @@ export const useQuizStore = create<QuizStore>()((set) => ({
   isSelectionComplete: false,
   isSubmitted: false,
   timeLeft: 0,
+  error: null,
 
   selectAnswer: (id) =>
     set((state) => {
@@ -57,18 +59,18 @@ export const useQuizStore = create<QuizStore>()((set) => ({
   submitAnswer: () => set({ isSubmitted: true }),
 
   fetchQuiz: async () => {
-    set({ isLoading: true });
+    set({ isLoading: true, error: null });
     try {
-      // Artificial delay to show off the skeletons
       await new Promise((resolve) => setTimeout(resolve, 1000));
       
       const response = await fetch("/quiz.json");
-      if (!response.ok) throw new Error("Error fetching quiz data ...");
+      if (!response.ok) throw new Error("Fetch failed");
 
       const data: QuizQuestion[] = await response.json();
       set({
         quizData: data,
         isLoading: false,
+        error: null,
         currentQuestionTitle: data[0]?.question || "",
         currentAnswers: data[0]?.answers || [],
         isSelectionComplete: false,
@@ -77,7 +79,10 @@ export const useQuizStore = create<QuizStore>()((set) => ({
       });
     } catch (error) {
       console.error(error);
-      set({ isLoading: false });
+      set({ 
+        isLoading: false, 
+        error: "Er is een fout opgetreden bij het laden van de quiz." 
+      });
     }
   },
 

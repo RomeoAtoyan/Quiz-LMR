@@ -27,6 +27,7 @@ What I implemented:
 - Confetti on perfect score
 - Loading skeleton screen (for fetch time)
 - Artificial delay to show off the skeletons
+- Error state & retry mechanism
 
 
 Architecture & Standards:
